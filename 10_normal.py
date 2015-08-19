@@ -24,7 +24,6 @@ def getPrimes(startNumber):
 	while True:
 		if isPrime(startNumber):
 			yield startNumber
-			#print startNumber
 
 		startNumber += 1
 
