@@ -25,9 +25,9 @@ def getNextPrime(startNumber):
 			yield startNumber
 		startNumber += 1
 
-# Get the 100001st prime number
+# Get the 10001st prime number
 # Simply check each number whether it is a prime.
-# If yes, increase the count until reach 100001
+# If yes, increase the count until reach 10001
 def main():
 	count = 1		# we already have 2 is the first prime number
 	for number in getNextPrime(3):
