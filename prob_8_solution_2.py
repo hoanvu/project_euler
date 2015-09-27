@@ -1,9 +1,21 @@
 import numpy as np
 import time
+from functools import wraps
 
-s = time.time()
+def fn_timer(function):
+  @wraps(function)
+  def function_timer(*args, **kwargs):
+    t0 = time.time()
+    result = function(*args, **kwargs)
+    t1 = time.time()
+    print ("Total time running %s: %s seconds" %
+           (function.func_name, str(t1-t0)) )
+    return result
+  return function_timer
 
-NUMBER = '''73167176531330624919225119674426574742355349194934\
+@fn_timer
+def find_max():
+	NUMBER = '''73167176531330624919225119674426574742355349194934\
 96983520312774506326239578318016984801869478851843\
 85861560789112949495459501737958331952853208805511\
 12540698747158523863050715693290963295227443043557\
@@ -24,25 +36,26 @@ NUMBER = '''73167176531330624919225119674426574742355349194934\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450'''
 
-length = 13
-products = []	# contains product of all 13-adjacent-digit numbers
+	length = 13
+	products = []	# contains product of all 13-adjacent-digit numbers
 
-while True:
-	num = NUMBER[:length]
-	# When remaining character is less than 13, stop processing
-	if len(num) < length: 
-		break
+	while True:
+		num = NUMBER[:length]
+		# When remaining character is less than 13, stop processing
+		if len(num) < length: 
+			break
 
-	# list(num) converts a string to list of characters
-	# map() converts all digit represented as character to real digit
-	# np.product() calculate product of all number in the list
-	prod = np.product( map( long, list(num) ) )
-	
-	# if product equals to 0, dont take it into account
-	if prod:	
-		products.append( prod )
-	NUMBER = NUMBER[1:]
+		# list(num) converts a string to list of characters
+		# map() converts all digit represented as character to real digit
+		# np.product() calculate product of all number in the list
+		prod = np.product( map( long, list(num) ) )
+		
+		# if product equals to 0, dont take it into account
+		if prod:	
+			products.append( prod )
+		NUMBER = NUMBER[1:]
 
-print time.time() - s
+	print max(products)
 
-print max(products)
+if __name__ == '__main__':
+	find_max()
