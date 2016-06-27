@@ -38,7 +38,8 @@ def main():
         if number > 1:
             # And it's divisible by a prime number
             if number % prime == 0:
-                result = prime 	# Assume that prime number to be the result
+                # Always get the biggest prime factor
+                result = prime
                 number /= prime
         else:
             # Print result when number is 1, which means there is no more prime number to divide
