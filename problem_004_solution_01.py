@@ -2,10 +2,14 @@
 # A palindrome number is a number that read the same both ways. Eg: 8118, 93239, ...
 # =================================================================================== #
 
-# Check whether a number is a palindrome by keep dividing it by 10
-# and get the remainder
+
 def is_palindrome(number):
-	return True if str(number) == str(number)[::-1] else False
+    """
+    Check whether a number is a palindrome or not
+    :param number: input number to be checked
+    :return: True if input number is a palindrome, False otherwise
+    """
+	return str(number) == str(number)[::-1]
 
 # Keep multiplying 2 3-digit numbers until we find a largest palindrome
 def main():
