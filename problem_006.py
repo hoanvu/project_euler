@@ -2,7 +2,7 @@
 the first 100 natural numbers and the square of the sum
 '''
 # Limit
-N = 100
+N = 100000
 
 sum = (N * ( N + 1 )) / 2
 square_of_sum = sum * sum
