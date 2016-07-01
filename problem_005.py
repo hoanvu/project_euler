@@ -6,58 +6,56 @@
 
 import math
 
-# This variable store the biggest number to be divisible by. For eg: if you need to 
-# find a number that divisible by all number from 1 to 15, this UPPER_END must be set to 15
-UPPER_END = 20
+# Check whether a number is a prime number
+def is_prime(number):
+    if type(number) != int and type(number) != long:
+        return False
+    if number > 1:
+        if number == 2: # 2 is a prime number
+            return True
+        if number % 2 == 0: # All prime number except 2 should be odd
+            return False
+        for currentNumber in range(3, int(math.sqrt(number) + 1), 2):
+            if number % currentNumber == 0:
+                return False
 
-def isPrime(number):
-	if number > 1:
-		if number == 2:
-			return True
-		if number % 2 == 0:
-			return False
-		for currentNum in range(int(math.sqrt(number) + 1), 2):
-			if number % currentNum == 0:
-				return False
-		return True
-	return False
+        return True
+    return False
 
-def generatePrimes():
-	p = []
-	for number in range(1, UPPER_END + 1):
-		if isPrime(number):
-			p.append(number)
+# Get the next prime number, using generator
+def get_next_prime(start_number):
+    while True:
+        if is_prime(start_number):
+            yield start_number
+        start_number += 1
 
-	return p
+#
+def get_factors():
+    final = {}
+    for number in range(2, 21):
+        factors = []
+        for prime in get_next_prime(2):
+            if number % prime == 0:
+                while number % prime == 0:
+                    factors.append(prime)
+                    number /= prime
+            if number == 1:
+                break
 
-def main():
-	# This variable store the smallest multiple
-	result = 1
+        factors = {factor: factors.count(factor) for factor in set(factors)}
+        for factor, freq in factors.items():
+            if not factor in final:
+                final[factor] = 1
+            else:
+                if freq > final[factor]:
+                    final[factor] = freq
+    return final
 
-	index = 0
-	check = True
-	expLimit = math.sqrt(UPPER_END)
 
-	p = generatePrimes();
-	a = []
+if __name__ == '__main__':
+    factors = get_factors()
+    result = 1
 
-	for i in range(index, len(p) + 1):
-		a.append(i)
-	print len(a)
-
-	while p[index] <= UPPER_END:
-		a[index] = 1
-		if check:
-			if p[index] <= expLimit:
-				a[index] = math.floor( math.log(UPPER_END) / math.log(p[index]) )
-			else:
-				check = False
-
-		result *= math.pow( p[index], a[index] )
-		print index
-		index += 1
-
-	print result
-
-if __name__ == "__main__":
-	main()
+    for factor, freq in factors.items():
+        result *= math.pow(factor, freq)
+    print (result)
