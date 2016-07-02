@@ -11,24 +11,20 @@
 # Which starting number, under one million, produces the longest chain?
 
 
-# This method returns the Collatz sequence from the given number
-def get_sequence(number):
-    sequence = [number]
-    while sequence[-1] != 1:
-        if sequence[-1] % 2 == 0:
-            sequence.append(sequence[-1] // 2)
+result = 0
+longest = 1
+for number in range(500001, 1000000, 2):
+    count = 1
+    temp = number
+    while temp != 16:
+        if temp % 2 == 0:
+            temp >>= 1
         else:
-            sequence.append(3 * sequence[-1] + 1)
-    return sequence
+            temp = 3 * temp + 1
+        count += 1
 
+    if longest < count:
+        longest = count
+        result = number
 
-if __name__ == '__main__':
-    longest = 0
-    result = 0
-    for number in range(1, 1000000):
-        seq_length = len(get_sequence(number))
-        if longest < len(get_sequence(number)):
-            longest = seq_length
-            result = number
-
-    print ("Number {} produces the longest chain with length: {}".format(result, longest) )
+print result
