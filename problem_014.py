@@ -27,4 +27,4 @@ for number in range(500001, 1000000, 2):
         longest = count
         result = number
 
-print result
+print (result)
