@@ -35,15 +35,19 @@ def get_corpus():
 # Translate a given number to its character representation
 def translate(number):
     number_to_word = get_corpus()
+
+    # if the input number is already in the corpus, simply return its character representation
     if number in number_to_word:
         return number_to_word[number]
+    # otherwise
     else:
+        # if input number is between 21 and 99 (2 numbers)
         if 20 < number < 100:
             first = number - (number % 10)
             return number_to_word[first] + ' ' + number_to_word[number % 10]
+        # if input number is between 100 and 999 (3 numbers)
         elif 100 <= number < 1000:
             first = number - (number % 100)
-            #remainder = translate(number % 100)
             return number_to_word[first] + ' and ' + translate(number % 100)
 
 
