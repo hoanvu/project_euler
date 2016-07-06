@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=1
 # Find sum of all multiples of 3 and 5
 #
 # All numbers divisible by 3 would be: 3, 6, 9, 12, ...
