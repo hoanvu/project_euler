@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=3
 # Find the largest prime factor of a number
 
 # Every number n can at most have one prime factor greater than n . If we, after dividing out some prime factor, calculate the square root of the remaining number we can use that square root as upper limit for factor. If factor exceeds this square root we know the remaining number is prime.
