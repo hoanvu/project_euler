@@ -1,4 +1,5 @@
-# Find the 13 adjacent digits in the 1000-digit number 
+# https://projecteuler.net/problem=8
+# Find the 13 adjacent digits in the 1000-digit number
 # that have the greatest product and print the product.
 
 # Input number
