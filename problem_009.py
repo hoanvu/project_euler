@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=9
 # There exists exactly one Pythagorean triplet a,b,c for which a + b + c = 1000
 # Find prodct abc
 
