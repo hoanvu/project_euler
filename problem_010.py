@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=10
 # Calculate sum of all prime numbers smaller than 2,000,000
 
 import math
